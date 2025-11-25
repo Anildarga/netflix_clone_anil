@@ -82,4 +82,3 @@ For more information, please refer to the [LICENSE](link_to_license) file.
 
 This project is inspired by the Netflix platform and serves as a learning exercise for building full stack applications using modern web technologies.
 
-Special thanks to the developers and contributors of the utilized libraries and frameworks that made this project possible
