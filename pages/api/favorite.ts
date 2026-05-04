@@ -1,24 +1,31 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { without } from "lodash";
+import fs from "fs";
+import path from "path";
 
 import prismadb from "@/lib/prismadb";
 import serverAuth from "@/lib/serverAuth";
+import { generateMovieId } from "@/lib/movieIdGenerator";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
+    // Read movies.json for validation
+    const moviesPath = path.join(process.cwd(), "movies.json");
+    const moviesData = fs.readFileSync(moviesPath, "utf-8");
+    const allMovies = JSON.parse(moviesData);
+
     if (req.method === "POST") {
       const { currentUser } = await serverAuth(req, res);
 
       const { movieId } = req.body;
 
-      const existingMovie = await prismadb.movie.findUnique({
-        where: {
-          id: movieId,
-        },
-      });
+      // Validate movie exists in movies.json
+      const existingMovie = allMovies.find(
+        (m: any) => generateMovieId(m.title) === movieId
+      );
 
       if (!existingMovie) {
         throw new Error("Invalid ID");
@@ -43,11 +50,10 @@ export default async function handler(
 
       const { movieId } = req.query as { movieId: string };
 
-      const existingMovie = await prismadb.movie.findUnique({
-        where: {
-          id: movieId,
-        },
-      });
+      // Validate movie exists in movies.json
+      const existingMovie = allMovies.find(
+        (m: any) => generateMovieId(m.title) === movieId
+      );
 
       if (!existingMovie) {
         throw new Error("Invalid ID");

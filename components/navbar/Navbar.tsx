@@ -1,9 +1,10 @@
 import { BsBell, BsChevronDown, BsSearch } from "react-icons/bs";
 import { MobileMenu } from "./MobileMenu";
 import { NavbarItem } from "./NavbarItem";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { menuData } from "./data";
 import { AccountMenu } from "./AccountMenu";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -13,6 +14,10 @@ export const Navbar = (props: Props) => {
   const [showMobMenu, setShowMobMenu] = useState<boolean>(false);
   const [showAccMenu, setShowAccMenu] = useState<boolean>(false);
   const [showBackground, setShowBackground] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const toggleMobMenu = useCallback(() => {
     setShowMobMenu((current) => !current);
@@ -20,6 +25,24 @@ export const Navbar = (props: Props) => {
   const toggleAccMenu = useCallback(() => {
     setShowAccMenu((current) => !current);
   }, []);
+
+  const handleSearchClick = useCallback(() => {
+    setShowSearch((current) => !current);
+    if (!showSearch) {
+      setTimeout(() => searchInputRef.current?.focus(), 0);
+    }
+  }, [showSearch]);
+
+  const handleSearch = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchInput.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchInput)}`);
+      setShowSearch(false);
+      setSearchInput("");
+    } else if (e.key === "Escape") {
+      setShowSearch(false);
+      setSearchInput("");
+    }
+  }, [searchInput, router]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,8 +83,24 @@ export const Navbar = (props: Props) => {
           <MobileMenu visible={showMobMenu} />
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
-          <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsSearch />
+          <div 
+            onClick={handleSearchClick}
+            className="text-gray-200 hover:text-gray-300 cursor-pointer transition relative"
+          >
+            {showSearch ? (
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={handleSearch}
+                onBlur={() => setTimeout(() => setShowSearch(false), 200)}
+                className="bg-gray-800 text-white px-3 py-1 rounded text-sm focus:outline-none"
+              />
+            ) : (
+              <BsSearch />
+            )}
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell />
