@@ -1,6 +1,6 @@
 import useMovie from "@/hooks/useMovie";
 import { useRouter } from "next/router";
-import { BsFillPlayFill } from "react-icons/bs";
+import { BsFillPlayFill } from "@/components/IconWrapper";
 
 type Props = {
   id: string;

@@ -1,4 +1,4 @@
-import { BsBell, BsChevronDown, BsSearch } from "react-icons/bs";
+import { BsBell, BsChevronDown, BsSearch } from "@/components/IconWrapper";
 import { MobileMenu } from "./MobileMenu";
 import { NavbarItem } from "./NavbarItem";
 import { useState, useCallback, useEffect, useRef } from "react";

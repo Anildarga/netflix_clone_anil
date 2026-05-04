@@ -4,8 +4,7 @@ import { useCallback, useState } from "react";
 import { CustomInput } from "@/components";
 // import input from "@/components/input"; //thisssss
 
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { FaGithub, FcGoogle } from "@/components/IconWrapper";
 import Meta from "@/lib/meta";
 
 const Auth = () => {

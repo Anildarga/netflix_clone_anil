@@ -1,7 +1,7 @@
 import useMovie from "@/hooks/useMovie";
 import Meta from "@/lib/meta";
 import { useRouter } from "next/router";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "@/components/IconWrapper";
 
 type Props = {};
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "@/components/IconWrapper";
 import { PlayButton } from "../Play";
 import { FavoriteButton } from "../Favorites";
 import useInfo from "@/hooks/useInfo";

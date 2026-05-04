@@ -1,6 +1,6 @@
 import useInfo from "@/hooks/useInfo";
 import { useRouter } from "next/router";
-import { BsChevronDown, BsFillPlayFill } from "react-icons/bs";
+import { BsChevronDown, BsFillPlayFill } from "@/components/IconWrapper";
 import { FavoriteButton } from "../Favorites";
 
 type Props = {

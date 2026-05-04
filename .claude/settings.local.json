@@ -10,7 +10,13 @@
       "Bash(taskkill *)",
       "Bash(cmd *)",
       "Bash(node *)",
-      "Bash(findstr :3000)"
+      "Bash(findstr :3000)",
+      "Bash(npm list *)",
+      "Bash(yarn run *)",
+      "Bash([ -f \"$dir/package.json\" ])",
+      "Bash(npx tsc *)",
+      "Bash(yarn install *)",
+      "Bash(git add *)"
     ]
   }
 }
