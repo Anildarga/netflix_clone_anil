@@ -1,15 +1,15 @@
 {
-  "short_name": "webshark.passwords",
-  "name": "webshark-password-generator",
+  "short_name": "Netflix Clone",
+  "name": "Netflix Clone",
   "icons": [
     {
       "src": "./favicons/favicon.svg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/svg"
+      "type": "image/svg+xml"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#141414",
+  "background_color": "#141414"
 }
